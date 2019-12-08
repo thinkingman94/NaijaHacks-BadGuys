@@ -25,7 +25,7 @@ to track their movements and the movement of their loved ones (circle)
 
 Adobe XD, Flutter, 
 
-# BenefitS
+# Benefits
 
 - People will feel more secured knowing that they are being tracked by their loved ones
 - People can now monitor their loved ones as well.
