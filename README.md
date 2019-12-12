@@ -31,4 +31,3 @@ Adobe XD, Flutter,
 - People can now monitor their loved ones as well.
 - SOS attributes to send signals incase of emergency or theft
 - Theft cases will reduce drastically when people know phones now serve as tracking devices
-     
