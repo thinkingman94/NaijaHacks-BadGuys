@@ -23,7 +23,7 @@ to track their movements and the movement of their loved ones (circle)
 
 # Proposed Stack
 
-Adobe XD, Flutter, 
+Adobe XD, Flutter, Nexmo, Android Studio, Linode, Mongodb, Dart
 
 # Benefits
 
