@@ -1,6 +1,6 @@
 module.exports = () => {
-    const charset = [1234567890];
-    const charsetLength = charset.length;
+    const charset = [1,2,3,4,5,6,7,8,9,0];
+    const charsetLength = charset.length - 1;
 
     let otp = '';
 
