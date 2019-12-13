@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const User = require('./routes/user');
 
 const app = express();
 
@@ -15,14 +14,10 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.get('/users', User.getAllUsers);
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
-app.get('/users/:id', User.getUser);
-
-app.post('/users', User.createUser);
-
-app.put('/users/:id', User.updateUser);
-
-app.delete('/users/:id', User.deleteUser);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 module.exports = app;

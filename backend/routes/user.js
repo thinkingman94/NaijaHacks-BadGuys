@@ -1,103 +1,18 @@
-const User = require('./models/user');
+const express = require('express');
+const router = express.Router();
 
-exports.createUser = (req, res, next) => {
-    const user = new User({
-        subscription: req.body.subscription,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        dob: req.body.dob,
-        email: req.body.email,
-        phone: req.body.phone,
-        home: req.body.home,
-        office: req.body.office,
-        others: req.body.others,
-        last_login: req.body.last_login,
-        password: req.body.password,
-        number_of_logins: req.body.number_of_logins,
-        date_time: req.body.date_time,
-        ip_address: req.body.ip_address,
-        screen_height: req.body.screen_height,
-        screen_width: req.body.screen_width
-    });
-    user.save().then(
-        () => res.status(201).json({
-            message: 'User saved successfully!'
-        })
-    ).catch(
-        error => res.status(400).json({
-            error: error
-        })
-    );
-};
+const auth = require('../middleware/auth');
 
-exports.updateUser = (req, res, next) => {
-    const user = new User({
-        _id: req.params.id,
-        subscription: req.body.subscription,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        dob: req.body.dob,
-        email: req.body.email,
-        phone: req.body.phone,
-        home: req.body.home,
-        office: req.body.office,
-        others: req.body.others,
-        last_login: req.body.last_login,
-        password: req.body.password,
-        number_of_logins: req.body.number_of_logins,
-        date_time: req.body.date_time,
-        ip_address: req.body.ip_address,
-        screen_height: req.body.screen_height,
-        screen_width: req.body.screen_width
-    });
-    User.updateOne({
-            _id: req.params.id
-        }, user)
-        .then(
-            () => res.status(201).json({
-                message: 'User updated successfully!'
-            })
-        )
-        .catch(
-            error => res.status(400).json({
-                error: error
-            })
-        );
-};
+const userCtrl = require('../controllers/user');
 
-exports.deleteUser = (req, res, next) => {
-    User.deleteOne({
-        _id: req.params.id
-    }).then(
-        () => res.status(200).json({
-            message: 'User deleted!'
-        })
-    ).catch(
-        error => res.status(400).json({
-            error: error
-        })
-    )
-};
+router.get('/', auth, userCtrl.getAllUsers);
 
-exports.getAllUsers = (req, res, next) => {
-    User.find().then(
-        users => res.status(200).json(users)
-    ).catch(
-        error => res.status(400).json({
-            error: error
-        })
-    )
-};
+router.get('/:id', auth, userCtrl.getUser);
 
-exports.getUser = (req, res, next) => {
-    User.findOne({
-        _id: req.params.id
-    }).then(
-        users => res.status(200).json(users)
-    )
-    .catch(
-        error => res.status(404).json({
-            error: error
-        })
-    )
-};
+router.post('/', auth, userCtrl.createUser);
+
+router.put('/:id', auth, userCtrl.updateUser);
+
+router.delete('/users/:id', auth, userCtrl.deleteUser);
+
+module.exports = router;

@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require('./mongooseConnect');
 
-mongoose.connect('mongodb+srv://zenith:YmT1NGLOqbWsu7fJ@cluster0-qndoj.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log('Successfully connected to mongodb'))
-  .catch(error => console.error(error));
+if(!mongoose){
+  return;
+}
+
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
   // id: {
@@ -103,5 +102,7 @@ const userSchema = mongoose.Schema({
     required: true
   }
 });
+
+userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
