@@ -19,7 +19,7 @@ Inadequate systems to checkmate insecurity on all levels
 
 An app that helps to secure individuals 
 by employing their most used device - the mobile phone 
-to track their movements and the movement of their loved ones (circle)
+to track their movements and the movement of their loved ones (Traque)
 
 # Proposed Stack
 
