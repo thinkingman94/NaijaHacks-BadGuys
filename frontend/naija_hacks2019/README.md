@@ -1,16 +1,20 @@
-# naija_hacks2019
+#NaijaHacks Hackathon 2019
+Team BadGuys
+Team Members
+Enwerem Arinze Prince, enweremprince@ymail.com
+Wogwugwu Zenith, wogwugwu.zenith@gmail.com
+Ekene Stanley, ekene.stan@gmail.com
+Problem
+Insecurity in Nigeria is a long age issue. Many cases of kidnaps and abductions among both high class and low class citizens. Inadequate systems to checkmate insecurity on all levels
 
-A new Flutter application.
+#Proposed Solution
+An app that helps to secure individuals by employing their most used device - the mobile phone to track their movements and the movement of their loved ones (Traque)
 
-## Getting Started
+#Proposed Stack
+Adobe XD, Flutter, Nexmo, Android Studio, Linode, Mongodb, Dart
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#Benefits
+People will feel more secured knowing that they are being tracked by their loved ones
+People can now monitor their loved ones as well.
+SOS attributes to send signals incase of emergency or theft
+Theft cases will reduce drastically when people know phones now serve as tracking devices
