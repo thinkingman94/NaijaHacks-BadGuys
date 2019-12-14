@@ -7,7 +7,7 @@ const sendSms = require('../helpers/sendSms');
 const normalisePhoneNumber = require('../helpers/normalisePhoneNumber');
 
 const checkOtp = (id, otp) => {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         PhoneValidation.findOne({
             _id: id
         }).then(
