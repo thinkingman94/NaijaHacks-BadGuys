@@ -11,12 +11,12 @@ module.exports = (to, text, from = 'TrackAm') => {
             type: "unicode"
           }, (err, responseData) => {
             if (err) {
-                reject({error: new Error(err)});
+                reject({error: err});
             } else {
               if (responseData.messages[0]['status'] === "0") {
                 resolve({message: "Message sent successfully."});
               } else {
-                reject({error: new Error(`Message failed with error: ${responseData.messages[0]['error-text']}`)});
+                reject({error: `Message failed with error: ${responseData.messages[0]['error-text']}`});
               }
             }
           });
