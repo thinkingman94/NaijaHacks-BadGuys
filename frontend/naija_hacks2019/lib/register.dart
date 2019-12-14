@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'hexcolors.dart';
+import 'hexColors.dart';
 
 class RegisterApp extends StatelessWidget {
   @override

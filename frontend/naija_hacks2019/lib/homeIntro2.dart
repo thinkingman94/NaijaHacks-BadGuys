@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'hexcolors.dart';
+import 'hexColors.dart';
 
-class SignupCongratsApp extends StatelessWidget {
+class HomeIntro2App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,36 +12,37 @@ class SignupCongratsApp extends StatelessWidget {
 //          title: Text('Welcome to Flutter'),
 //        ),
         body: Container(
-          color: HexColor.fromHex('#ffffff'),
-          child: Center(
-              child: Column(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/intro-screen-2.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset("assets/logo-blue.png"),
-              Text('Congratulations!',
+              Text('You Too Can',
                 textAlign: TextAlign.center,style: TextStyle(
-                    color: HexColor.fromHex('#08004C'),
-                    fontSize: 22.0
+                    color: Colors.white,
+                    fontSize: 32.0
                 ),),
-              Text('You\'r All Set!',
+              Text('Be Tracked On-The-Go',
                 textAlign: TextAlign.center,style: TextStyle(
-                    color: HexColor.fromHex('#08004C'),
-                    fontSize: 22.0
+                    color: Colors.white,
+                    fontSize: 36.0
                 ),),
               RaisedButton(
-                color: Colors.white,
-                textColor: HexColor.fromHex('#a5000d'),
+                color: HexColor.fromHex('#08004C'),
+                textColor: Colors.white,
                 padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-                child: Text(
-                  'Continue',
+                child: Text('Next',
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      textBaseline: TextBaseline.alphabetic),
-                ),
+                      textBaseline: TextBaseline.alphabetic
+                  ),),
                 onPressed: () {
-                  //Navigator.pop(context);
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/register');
                 },
               )
             ],

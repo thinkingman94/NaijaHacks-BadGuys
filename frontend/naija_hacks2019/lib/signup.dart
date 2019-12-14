@@ -1,8 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:requests/requests.dart';
 
-import 'hexcolors.dart';
+import 'hexColors.dart';
+import 'signupOtp.dart';
+import 'SignupArguments.dart';
 
 class SignUpApp extends StatelessWidget {
+  final Map<String, TextEditingController> formsControllers = {
+    "name": TextEditingController(),
+    "phone": TextEditingController()
+  };
+
+  void onSignUp(context) async {
+try {
+      var r =
+          await Requests.post("http://139.162.220.117:3000/api/auth/otp_init",
+              body: {
+                "subject": this.formsControllers['phone'].text
+              },
+              bodyEncoding: RequestBodyEncoding.JSON);
+
+      r.raiseForStatus();
+      dynamic json = r.json();
+
+      Navigator.pushNamed(
+        context,
+        SignupOtpApp.routeName,
+        arguments: SignupArguments(json['id'], this.formsControllers['name'].text),
+      );
+    } catch (e) {print(e.toString());
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // Retrieve the text the user has entered by using the
+            // TextEditingController.
+            content: Text('Network error, Please try again'),//e.toString()
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +58,7 @@ class SignUpApp extends StatelessWidget {
             children: <Widget>[
               Image.asset("assets/logo-white.png"),
               TextField(
+                controller: this.formsControllers['name'],
                 autofocus: false,
                 style: TextStyle(fontSize: 22.0, color: Color(0xFFbdc6cf)),
                 decoration: new InputDecoration(
@@ -33,6 +73,7 @@ class SignUpApp extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: this.formsControllers['phone'],
                 autofocus: false,
                 style: TextStyle(fontSize: 22.0, color: Color(0xFFbdc6cf)),
                 decoration: new InputDecoration(
@@ -47,12 +88,16 @@ class SignUpApp extends StatelessWidget {
                 ),
               ),
               CheckboxListTile(
-                title: Text("By Signing up, you agree to our Terms and Conditions", style: TextStyle(color: Colors.white),),
+                title: Text(
+                  "By Signing up, you agree to our Terms and Conditions",
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: false,
                 activeColor: Colors.white,
                 checkColor: HexColor.fromHex('#08004C'),
                 //onChanged: (newValue) { ... },
-                controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                controlAffinity:
+                    ListTileControlAffinity.leading, //  <-- leading Checkbox
               ),
               RaisedButton(
                 color: Colors.white,
@@ -66,14 +111,16 @@ class SignUpApp extends StatelessWidget {
                       textBaseline: TextBaseline.alphabetic),
                 ),
                 onPressed: () {
-                  //Navigator.pop(context);
-                  Navigator.pushNamed(context, '/signup-otp');
+                  onSignUp(context);
                 },
               )
             ],
           )),
         ),
       ),
+        routes: {
+          SignupOtpApp.routeName: (context) => SignupOtpApp(),
+        }
     );
   }
 }

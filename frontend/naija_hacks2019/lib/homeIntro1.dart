@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'hexcolors.dart';
+import 'hexColors.dart';
 
 class HomeIntro1App extends StatelessWidget {
   @override
