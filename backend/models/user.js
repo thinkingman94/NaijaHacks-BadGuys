@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
   },
   last_name: {
     type: String,
-    required: true
+    required: false
   },
   dob: {
     type: Date,
@@ -38,7 +38,7 @@ const userSchema = mongoose.Schema({
   home: {
     description: {
       type: String,
-      required: true
+      required: false
     },
     coordinates: {
       type: [Number],
@@ -48,7 +48,7 @@ const userSchema = mongoose.Schema({
   office: {
     description: {
       type: String,
-      required: true
+      required: false
     },
     coordinates: {
       type: [Number],
@@ -58,7 +58,7 @@ const userSchema = mongoose.Schema({
   others: [{
     description: {
       type: String,
-      required: true
+      required: false
     },
     coordinates: {
       type: [Number],
@@ -91,15 +91,15 @@ const userSchema = mongoose.Schema({
   },
   ip_address: {
     type: String,
-    required: true
+    required: false
   },
   screen_height: {
     type: Number,
-    required: true
+    required: false
   },
   screen_width: {
     type: Number,
-    required: true
+    required: false
   }
 });
 
