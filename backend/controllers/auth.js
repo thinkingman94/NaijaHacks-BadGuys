@@ -69,7 +69,8 @@ exports.otp_init = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
-    checkOtp(id, otp)
+    if(req.body.id && req.body.otp){
+        checkOtp(req.body.id, req.body.otp)
         .then((subject) => {
             bcrypt.hash(req.body.password, 10).then(
                 (hash) => {
@@ -108,6 +109,11 @@ exports.signup = (req, res, next) => {
                 error: error
             });
         });
+    }else{
+        res.status(500).json({
+            error: error
+        });
+    }
 };
 
 exports.login = (req, res, next) => {
