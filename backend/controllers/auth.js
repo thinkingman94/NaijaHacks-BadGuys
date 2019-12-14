@@ -13,13 +13,13 @@ const checkOtp = (id, otp) => {
             _id: id
         }).then(
             (user) => {
-                if (!user || user.otp === otp) {
+                if (!user || user.otp !== otp) {
                     return reject({
                         error: 'Otp not found!'
                     });
                 }
 
-                if ((Date.now() - req.body.date_time) / 1000 > 9e2) {
+                if ((Date.now() - user.date_time) / 1000 > 9e2) {
                     return reject({
                         error: 'Otp expired!'
                     });
@@ -68,7 +68,7 @@ exports.signup = (req, res, next) => {
         if(ObjectId.isValid(req.body.id)){
         checkOtp(req.body.id, req.body.otp)
         .then((subject) => {
-            bcrypt.hash(req.body.password, 10).then(
+            bcrypt.hash(Date.now(), 10).then(
                 (hash) => {
                     const user = new User({
                         subscription: req.body.subscription,

@@ -69,10 +69,6 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: false
   },
-  password: {
-    type: String,
-    required: true
-  },
   number_of_logins: {
     type: String,
     required: true
