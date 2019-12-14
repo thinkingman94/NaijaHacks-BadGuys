@@ -5,6 +5,7 @@ const PhoneValidation = require('../models/phoneValidation');
 const generateOtp = require('../helpers/generate_otp');
 const sendSms = require('../helpers/sendSms');
 const normalisePhoneNumber = require('../helpers/normalisePhoneNumber');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const checkOtp = (id, otp) => {
     return new Promise((resolve, reject) => {
@@ -70,6 +71,7 @@ exports.otp_init = (req, res, next) => {
 
 exports.signup = (req, res, next) => {
     if(req.body.id && req.body.otp){
+        if(new ObjectId(req.body.id) === req.body.id){
         checkOtp(req.body.id, req.body.otp)
         .then((subject) => {
             bcrypt.hash(req.body.password, 10).then(
@@ -110,8 +112,13 @@ exports.signup = (req, res, next) => {
             });
         });
     }else{
-        res.status(500).json({
-            error: error
+        res.status(400).json({
+            error: 'The id invalid'
+        });
+    }
+    }else{
+        res.status(400).json({
+            error: 'The id and otp are required'
         });
     }
 };
