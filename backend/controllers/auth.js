@@ -68,7 +68,7 @@ exports.signup = (req, res, next) => {
         if(ObjectId.isValid(req.body.id)){
         checkOtp(req.body.id, req.body.otp)
         .then((subject) => {
-            bcrypt.hash(Date.now(), 10).then(
+            bcrypt.hash(String(Date.now()), 10).then(
                 (hash) => {
                     const user = new User({
                         subscription: req.body.subscription,
