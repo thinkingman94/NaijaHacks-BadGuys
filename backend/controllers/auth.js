@@ -29,9 +29,7 @@ const checkOtp = (id, otp) => {
             }
         ).catch(
             (error) => {
-                return reject({
-                    error: error
-                });
+                return reject(error);
             }
         );
     });
@@ -55,16 +53,12 @@ exports.otp_init = (req, res, next) => {
                     id: phoneValidation._id
                 });
             }).catch((error) => {
-                res.status(500).json({
-                    error: error
-                });
+                res.status(500).json(error);
             });
         }
     ).catch(
         (error) => {
-            res.status(500).json({
-                error: error
-            });
+            res.status(500).json(error);
         }
     );
 };
@@ -93,27 +87,23 @@ exports.signup = (req, res, next) => {
 
                     user.save().then(
                         () => {
-                            res.status(201).json({
+                            res.status(200).json({
                                 message: 'User added successfully!'
                             });
                         }
                     ).catch(
                         (error) => {
-                            res.status(500).json({
-                                error: error
-                            });
+                            res.status(500).json(error);
                         }
                     );
                 }
             );
         }).catch((error) => {
-            res.status(500).json({
-                error: error
-            });
+            res.status(500).json(error);
         });
     }else{
         res.status(400).json({
-            error: 'The id invalid'
+            error: 'The id is invalid'
         });
     }
     }else{
@@ -153,17 +143,13 @@ exports.login = (req, res, next) => {
                 }
             ).catch(
                 (error) => {
-                    res.status(500).json({
-                        error: error
-                    });
+                    res.status(500).json(error);
                 }
             );
         }
     ).catch(
         (error) => {
-            res.status(500).json({
-                error: error
-            });
+            res.status(500).json(error);
         }
     );
 }
