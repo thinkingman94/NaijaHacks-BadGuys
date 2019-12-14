@@ -24,9 +24,7 @@ exports.createUser = (req, res, next) => {
             message: 'User saved successfully!'
         })
     ).catch(
-        error => res.status(400).json({
-            error: error
-        })
+        error => res.status(400).json(error)
     );
 };
 
@@ -59,9 +57,7 @@ exports.updateUser = (req, res, next) => {
             })
         )
         .catch(
-            error => res.status(400).json({
-                error: error
-            })
+            error => res.status(400).json(error)
         );
 };
 
@@ -73,9 +69,7 @@ exports.deleteUser = (req, res, next) => {
             message: 'User deleted!'
         })
     ).catch(
-        error => res.status(400).json({
-            error: error
-        })
+        error => res.status(400).json(error)
     )
 };
 
@@ -83,9 +77,7 @@ exports.getAllUsers = (req, res, next) => {
     User.find().then(
         users => res.status(200).json(users)
     ).catch(
-        error => res.status(400).json({
-            error: error
-        })
+        error => res.status(400).json(error)
     )
 };
 
@@ -96,8 +88,6 @@ exports.getUser = (req, res, next) => {
         users => res.status(200).json(users)
     )
     .catch(
-        error => res.status(404).json({
-            error: error
-        })
+        error => res.status(404).json(error)
     )
 };
