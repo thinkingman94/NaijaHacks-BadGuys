@@ -15,13 +15,13 @@ const checkOtp = (id, otp) => {
             (user) => {
                 if (!user || user.otp === otp) {
                     return reject({
-                        error: new Error('Otp not found!')
+                        error: 'Otp not found!'
                     });
                 }
 
                 if ((Date.now() - req.body.date_time) / 1000 > 9e2) {
                     return reject({
-                        error: new Error('Otp expired!')
+                        error: 'Otp expired!'
                     });
                 }
 
@@ -71,7 +71,7 @@ exports.otp_init = (req, res, next) => {
 
 exports.signup = (req, res, next) => {
     if(req.body.id && req.body.otp){
-        if(new ObjectId(req.body.id) === req.body.id){
+        if(ObjectId.isValid(req.body.id)){
         checkOtp(req.body.id, req.body.otp)
         .then((subject) => {
             bcrypt.hash(req.body.password, 10).then(
@@ -130,14 +130,14 @@ exports.login = (req, res, next) => {
         (user) => {
             if (!user) {
                 return res.status(401).json({
-                    error: new Error('User not found!')
+                    error: 'User not found!'
                 });
             }
             bcrypt.compare(req.body.password, user.password).then(
                 (valid) => {
                     if (!valid) {
                         return res.status(401).json({
-                            error: new Error('Incorrect password!')
+                            error: 'Incorrect password!'
                         });
                     }
                     const token = jwt.sign({
